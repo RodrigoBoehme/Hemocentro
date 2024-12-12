@@ -21,18 +21,42 @@ function formatDate(dDate,sMode){
             return  dd + "/" + mm + "/" + yyyy;
         }
         if (sMode == "yyyymmdd"){
-            return yyyy + mm + dd
+            return yyyy+ mm + dd
         }
 
 }
 
 function dataHue(input){
-    let today=input.split('/'||"-"||'|')
-    let dd=today[0]
-    let mm=today[1]
-    let yyyy=today[2]
-    return mm + '/' + dd + '/' + yyyy
-}
+
+    if(input.includes('/')){
+        today=input.split('/')
+        dd=today[0]
+        mm=today[1]
+        yyyy=today[2]
+        return mm + '/' + dd + '/' + yyyy
+    }
+    else if(input.includes('-')){
+        today=input.split('-')
+        dd=today[0]
+        mm=today[1]
+        yyyy=today[2]
+        return mm + '/' + dd + '/' + yyyy
+
+    }
+    else if(input.includes('|')){
+        let today=input.split('|')
+        dd=today[0]
+        mm=today[1]
+        yyyy=today[2]
+        return mm + '/' + dd + '/' + yyyy
+
+    }
+
+ //   let today=input.split('/'||'-'||'|')
+ //   let dd=today[0]
+ //   let mm=today[1]
+ //   let yyyy=today[2]
+   }
 
 
 
@@ -113,13 +137,13 @@ function pesquisarData(){
     console.log(numeroTransformado)
     console.log('-------------------------------------------------------------------------------------------------------------------')
     for(let a=0;a<cadastroCliente.length;a++){
-        if(Number(formatDate(cadastroCliente[a].data,"yyyymmdd"))<numeroTransformado){
+        if(Number(formatDate(cadastroCliente[a].data,"yyyymmdd"))<=numeroTransformado){
             console.log(`| ID: ${(cadastroCliente[a].id).toString().padEnd(3)}| Nome:${(cadastroCliente[a].nome).padEnd(30)}| Data cadastro:${formatDate(cadastroCliente[a].data,'dd/mm/yyyy').padEnd(15)}| Tipo Sanguineo:${(tipoSanguineo[cadastroCliente[a].tipoSanguineo-1]+antigenoD[cadastroCliente[a].positividade-1]).padEnd(20)}|`)
         
         }
-        console.log('-------------------------------------------------------------------------------------------------------------------')
+        
     }
-
+    console.log('-------------------------------------------------------------------------------------------------------------------')
 }
 
 
