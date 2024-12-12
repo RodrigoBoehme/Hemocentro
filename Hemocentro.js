@@ -27,7 +27,7 @@ function formatDate(dDate,sMode){
 }
 
 function dataHue(input){
-    let today=input.split('/'||'-'||'|')
+    let today=input.split('/'||"-"||'|')
     let dd=today[0]
     let mm=today[1]
     let yyyy=today[2]
@@ -107,6 +107,20 @@ function pacienteTipoSangue(){
 
 }
 }
+function pesquisarData(){
+    let nSeiAinda=new Date(dataHue(readline.question(`Qual a data a ser buscada? :`)))
+    let numeroTransformado= Number(formatDate(nSeiAinda,"yyyymmdd"))
+    console.log(numeroTransformado)
+    console.log('-------------------------------------------------------------------------------------------------------------------')
+    for(let a=0;a<cadastroCliente.length;a++){
+        if(Number(formatDate(cadastroCliente[a].data,"yyyymmdd"))<numeroTransformado){
+            console.log(`| ID: ${(cadastroCliente[a].id).toString().padEnd(3)}| Nome:${(cadastroCliente[a].nome).padEnd(30)}| Data cadastro:${formatDate(cadastroCliente[a].data,'dd/mm/yyyy').padEnd(15)}| Tipo Sanguineo:${(tipoSanguineo[cadastroCliente[a].tipoSanguineo-1]+antigenoD[cadastroCliente[a].positividade-1]).padEnd(20)}|`)
+        
+        }
+        console.log('-------------------------------------------------------------------------------------------------------------------')
+    }
+
+}
 
 
 
@@ -133,11 +147,12 @@ function menuHemocentro(){
             break;
 
             case 4:
-                console.log('Essa funcao ainda nao esta pronta')
+                pesquisarData()                
                 readline.question('Pressione Enter para continuar')
             break;
 
             case 5:
+
                 console.clear()
             return;
 
