@@ -73,33 +73,40 @@ function cadastro(){
     paciente={}
     paciente.id=i+1
 
-    console.clear
+    console.clear()
     paciente.nome=readline.question(`Qual o Nome do paciente:`)
-    paciente.tipoSanguineo=readline.questionInt((`Qual o Tipo Sanguineo do paciente?\n\n1. A\n2. B\n3. AB\n4. O\n\nDigite o numero correspondente: `))
-    paciente.positividade=readline.questionInt('Seu sangue é positivo?\n1. Sim\n2. Nao\n\nDigite o Numero correspondente: ')
-    
+    console.clear()
 
-    
+    paciente.tipoSanguineo=readline.questionInt((`Qual o Tipo Sanguineo do paciente?\n\n1. A\n2. B\n3. AB\n4. O\n\nDigite o numero correspondente: `))
+    console.clear()
+
+    paciente.positividade=readline.questionInt('O sangue e positivo?\n\n1. Sim\n2. Nao\n\nDigite o Numero correspondente: ')
+    console.clear()
+
     const dataISO= new Date(dataHue(readline.question(`Informe a data: `)))
    // formatDate(dataISO,'dd/mm/yyyy')
     paciente.data=dataISO
     cadastroCliente.push(paciente)
-    console.log(cadastroCliente[i])
+    //console.log(cadastroCliente[i])
     
     i++
 }
 
 function verPaciente(){
+    console.clear
+    console.log('-------------------------------------------------------------------------------------------------------------------')
+    console.log(`| IDs    | Nome                          |Data Cadastro         | Tipo Sanguineo                                 | `)
     console.log('-------------------------------------------------------------------------------------------------------------------')
     for(let a=0;a<cadastroCliente.length;a++){
         
-        console.log(`| ID: ${(cadastroCliente[a].id).toString().padEnd(3)}| Nome:${(cadastroCliente[a].nome).padEnd(30)}| Data cadastro:${formatDate(cadastroCliente[a].data,'dd/mm/yyyy').padEnd(15)}| Tipo Sanguineo:${(tipoSanguineo[cadastroCliente[a].tipoSanguineo-1]+antigenoD[cadastroCliente[a].positividade-1]).padEnd(20)}|`)
+        console.log(`| ID: ${(cadastroCliente[a].id).toString().padEnd(3)}| ${(cadastroCliente[a].nome).padEnd(30)}| ${formatDate(cadastroCliente[a].data,'dd/mm/yyyy').padEnd(21)}| ${(tipoSanguineo[cadastroCliente[a].tipoSanguineo-1]+antigenoD[cadastroCliente[a].positividade-1]).padEnd(48
+            )}|`)
     }
     console.log('-------------------------------------------------------------------------------------------------------------------')
 }
 function pacienteTipoSangue(){
-    arrayTipo=[]
-    arrayAntigeno=[]
+   arrayTipo=[]
+   arrayAntigeno=[]
     let opcaoTipo;
     let opcaoAntingeno;
 
@@ -109,7 +116,7 @@ function pacienteTipoSangue(){
             }
         opcaoTipo=readline.questionInt(`Escolha um Numero: `)
 
-        opcaoAntingeno=readline.questionInt('Positivo ou Negativo?\n1. Positivo\n2. Negativo\nEscolha um numero: ')
+        opcaoAntingeno=readline.questionInt('Positivo ou Negativo?\n\n1. Positivo\n2. Negativo\nEscolha um numero: ')
         
 
         for(let i=0;i<cadastroCliente.length;i++){
@@ -124,10 +131,16 @@ function pacienteTipoSangue(){
         }
 }
     if(arrayTipo.length>0){
-    console.log(`Pessoas com o sangue ${tipoSanguineo[opcaoTipo-1]}${antigenoD[opcaoAntingeno]}`)
-        for(let i=0;i<arrayTipo.length;i++){
-            console.log(`${i+1}. ${arrayTipo[i].nome} Data cadastro:${formatDate(cadastroCliente[i].data,'dd/mm/yyyy')}, Tipo Sanguineo:${tipoSanguineo[cadastroCliente[i].tipoSanguineo-1]}${antigenoD[cadastroCliente[i].positividade-1]}`)
+    console.clear()
+    console.log(`Pessoas com o sangue ${tipoSanguineo[opcaoTipo-1]}${antigenoD[opcaoAntingeno-1]}`)
+
+    console.log('-------------------------------------------------------------------------------------------------------------------')
+        for(let a=0;a<arrayTipo.length;a++){
+           // console.log(`${i+1}. ${arrayTipo[i].nome} Data cadastro:${formatDate(cadastroCliente[i].data,'dd/mm/yyyy')}, Tipo Sanguineo:${tipoSanguineo[cadastroCliente[i].tipoSanguineo-1]}${antigenoD[cadastroCliente[i].positividade-1]}`)
+
+            console.log(`| ID: ${(cadastroCliente[a].id).toString().padEnd(3)}| Nome:${(cadastroCliente[a].nome).padEnd(30)}| Data cadastro:${formatDate(cadastroCliente[a].data,'dd/mm/yyyy').padEnd(15)}| Tipo Sanguineo:${(tipoSanguineo[cadastroCliente[a].tipoSanguineo-1]+antigenoD[cadastroCliente[a].positividade-1]).padEnd(20)}|`)
         }
+        console.log('-------------------------------------------------------------------------------------------------------------------')
 
 }
 }
@@ -157,22 +170,27 @@ function menuHemocentro(){
         switch(opcao){
             case 1:
                 cadastro()
+                console.clear()
                 readline.question('Pressione Enter para continuar')
+                console.clear
             break;
 
             case 2:
                 verPaciente()
                 readline.question('Pressione Enter para continuar')
+                console.clear()
             break;
 
             case 3:
                 pacienteTipoSangue()
                 readline.question('Pressione Enter para continuar')
+                console.clear()
             break;
 
             case 4:
                 pesquisarData()                
                 readline.question('Pressione Enter para continuar')
+                console.clear()
             break;
 
             case 5:
