@@ -183,11 +183,10 @@ function pesquisarData() {
         let nSeiAinda = new Date(dataHue(readline.question(`Qual a data a ser buscada? :`)))
         if(nSeiAinda=='Invalid Date'){
             nSeiAinda=new Date
-            console.log('Ultilizando o dia Atual como referencia')
+            console.log('Data Invalida\nUltilizando o dia Atual como referencia')
         }
         let numeroTransformado = Number(formatDate(nSeiAinda, "yyyymmdd"))
-        //    console.log(numeroTransformado)
-        console.log('-------------------------------------------------------------------------------------------------------------------')
+//            console.log(numeroTransformado)
         for (let a = 0; a < cadastroCliente.length; a++) {
             if (Number(formatDate(cadastroCliente[a].data, "yyyymmdd")) <= numeroTransformado) {
                 arrayData.push(cadastroCliente[a])
