@@ -183,15 +183,13 @@ function pesquisarData() {
         let  dataRead= new Date(dataHue(readline.question(`Qual a data a ser buscada? :`)))
         if (dataRead == 'Invalid Date') {
             dataRead = new Date
+            console.clear()
             console.log('Data Invalida\nUltilizando o dia Atual como referencia')
         }
         let numeroTransformado = formatDate(dataRead,"yyyymmdd")
         numeroTransformado
-                    console.log(numeroTransformado)
+    //    console.log(numeroTransformado)
 
-        if(numeroTransformado<5000){
-            console.log('hue')
-        }
 
         for (let a = 0; a < cadastroCliente.length; a++) {
             if (Number(formatDate(cadastroCliente[a].data, "yyyymmdd")) <= numeroTransformado) {
@@ -218,8 +216,11 @@ function pesquisarData() {
 
 function menuHemocentro() {
     while (true) {
-        opcao = readline.questionInt('\===== SISTEMA DE CADASTRO DE DOADORES DE SANGUE =====\n1. Cadastrar doador\n2. Listar doadores\n3. Buscar doador por tipo sanguineo\n4. Buscar doador por data da ultima doacao\n5. Sair\n\nDigite o Numero: ')
         console.clear()
+        console.log('██╗  ██╗███████╗███╗   ███╗ ██████╗  ██████╗███████╗███╗   ██╗████████╗██████╗  ██████╗ \n██║  ██║██╔════╝████╗ ████║██╔═══██╗██╔════╝██╔════╝████╗  ██║╚══██╔══╝██╔══██╗██╔═══██╗\n███████║█████╗  ██╔████╔██║██║   ██║██║     █████╗  ██╔██╗ ██║   ██║   ██████╔╝██║   ██║\n██╔══██║██╔══╝  ██║╚██╔╝██║██║   ██║██║     ██╔══╝  ██║╚██╗██║   ██║   ██╔══██╗██║   ██║\n██║  ██║███████╗██║ ╚═╝ ██║╚██████╔╝╚██████╗███████╗██║ ╚████║   ██║   ██║  ██║╚██████╔╝\n╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝ ╚═════╝  ╚═════╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ')
+        opcao = readline.questionInt(`\===== SISTEMA DE CADASTRO DE DOADORES DE SANGUE =====\n1. Cadastrar doador\n2. Listar doadores\n3. Buscar doador por tipo sanguineo\n4. Buscar doador por data da ultima doacao\n5. Sair\n\nDigite o Numero: `)
+        console.clear()
+       
 
         switch (opcao) {
             case 1:
@@ -256,8 +257,12 @@ function menuHemocentro() {
                 break;
 
             case 27092002:
-                console.log('Essa opcao e um easter egg')
+                readline.question('Essa opcao e um easter egg')
                 break;
+            //case 1111939:
+                //re
+
+            
         }
     }
 }
