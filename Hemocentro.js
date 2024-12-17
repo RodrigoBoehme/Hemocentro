@@ -21,7 +21,7 @@ function formatDate(dDate, sMode) {
         return dd + "/" + mm + "/" + yyyy;
     }
     if (sMode == "yyyymmdd") {
-        return yyyy + mm + dd
+        return yyyy.toString() + mm.toString() + dd.toString()
     }
 
 }
@@ -180,13 +180,19 @@ function pacienteTipoSangue() {
 function pesquisarData() {
     if (cadastroCliente.length > 0) {
         arrayData = []
-        let nSeiAinda = new Date(dataHue(readline.question(`Qual a data a ser buscada? :`)))
-        if(nSeiAinda=='Invalid Date'){
-            nSeiAinda=new Date
+        let  dataRead= new Date(dataHue(readline.question(`Qual a data a ser buscada? :`)))
+        if (dataRead == 'Invalid Date') {
+            dataRead = new Date
             console.log('Data Invalida\nUltilizando o dia Atual como referencia')
         }
-        let numeroTransformado = Number(formatDate(nSeiAinda, "yyyymmdd"))
-//            console.log(numeroTransformado)
+        let numeroTransformado = formatDate(dataRead,"yyyymmdd")
+        numeroTransformado
+                    console.log(numeroTransformado)
+
+        if(numeroTransformado<5000){
+            console.log('hue')
+        }
+
         for (let a = 0; a < cadastroCliente.length; a++) {
             if (Number(formatDate(cadastroCliente[a].data, "yyyymmdd")) <= numeroTransformado) {
                 arrayData.push(cadastroCliente[a])
@@ -256,4 +262,5 @@ function menuHemocentro() {
     }
 }
 console.clear()
+
 menuHemocentro()
